@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 
 // نمونه محصولات
 const products = [
@@ -10,13 +10,13 @@ const products = [
     image: '/images/products/soundcore-r60i.jpg',
     category: 'headphones',
     rating: 4.8,
-    isNew: true,
-    link: 'https://www.digikala.com/product/dkp-21061064/%D9%87%D8%AF%D9%81%D9%88%D9%86-%D8%A8%D9%84%D9%88%D8%AA%D9%88%D8%AB%DB%8C-%D8%A7%D9%86%DA%A9%D8%B1-%D9%85%D8%AF%D9%84-r60i-nc/'
+    isNew: true
   }
 ]
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
   const lang = 'fa'
   
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
@@ -100,11 +100,9 @@ export default function ProductsPage() {
         gap: 20 
       }}>
         {filteredProducts.map((product) => (
-          <a 
+          <div 
             key={product.id}
-            href={product.link}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() => navigate(`/products/${product.id}`)}
             style={{
               background: 'var(--bg-secondary)',
               borderRadius: 16,
@@ -192,7 +190,7 @@ export default function ProductsPage() {
                 </span>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
