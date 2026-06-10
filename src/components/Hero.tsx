@@ -12,15 +12,9 @@ export default function Hero() {
       <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(34,197,94,0.1), transparent 70%)', filter: 'blur(80px)' }} />
 
       <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 50, background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)', color: 'var(--mint-400)', fontSize: 13, fontWeight: 500, marginBottom: 24 }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--mint-400)', animation: 'pulse 2s infinite' }} />
-          {t('همیشه وصل', 'Always Connected')}
-        </div>
-
+        {/* عنوان اصلی - آپدیت شده */}
         <h1 style={{ fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: 20, letterSpacing: '-0.02em' }}>
-          {t('گجت‌هایی که زندگیت رو', 'Gadgets that make')}
-          <br />
-          <span style={{ color: 'var(--mint-400)' }}>{t('راحت‌تر می‌کنن', 'life easier')}</span>
+          {t('گجت‌هایی که زندگی رو راحت‌تر می‌کنن', 'Gadgets that make life easier')}
         </h1>
 
         <p style={{ fontSize: 'clamp(16px, 2vw, 20px)', color: 'rgba(255,255,255,0.6)', maxWidth: 560, margin: '0 auto 40px', lineHeight: 1.7 }}>
