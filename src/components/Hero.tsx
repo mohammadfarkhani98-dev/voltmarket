@@ -12,13 +12,13 @@ export default function Hero() {
       <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(34,197,94,0.1), transparent 70%)', filter: 'blur(80px)' }} />
 
       <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1, padding: '0 16px' }}>
-        {/* عنوان اصلی - یک خطی */}
+        {/* عنوان اصلی - بزرگ و یک‌خطی */}
         <h1 style={{ 
           fontSize: 'clamp(22px, 5vw, 56px)', 
           fontWeight: 900, 
           color: '#fff', 
           lineHeight: 1.2, 
-          marginBottom: 20, 
+          marginBottom: 16, 
           letterSpacing: '-0.02em',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
@@ -27,7 +27,14 @@ export default function Hero() {
           {t('گجت‌هایی که زندگی رو راحت‌تر می‌کنن', 'Gadgets that make life easier')}
         </h1>
 
-        <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', color: 'rgba(255,255,255,0.6)', maxWidth: 480, margin: '0 auto 32px', lineHeight: 1.7 }}>
+        {/* زیرنویس - کوچیک‌تر از عنوان */}
+        <p style={{ 
+          fontSize: 'clamp(12px, 1.5vw, 16px)', 
+          color: 'rgba(255,255,255,0.6)', 
+          maxWidth: 480, 
+          margin: '0 auto 32px', 
+          lineHeight: 1.7 
+        }}>
           {t('هنذفری، ساعت هوشمند، فلش مموری و هرچی برای زندگی دیجیتالیت لازم داری — با قیمت مناسب و ارسال سریع', 'Headphones, smartwatches, flash drives & everything for your digital life — at fair prices with fast delivery')}
         </p>
 
