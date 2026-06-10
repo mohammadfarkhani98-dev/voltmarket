@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useStore } from '../hooks/useStore'
 import { ArrowLeft, Star, Truck, Shield, HeadphonesIcon } from 'lucide-react'
 
 // نمونه محصولات
@@ -16,7 +15,7 @@ const products = [
     reviews: 128,
     isNew: true,
     inStock: true,
-    description_fa: 'هندزفری بلوتوثی انکر Soundcore R60i NC با کیفیت صدای عالی و نویز کنسلیگ فعال. باتری ۳۵ ساعته و طراحی ارگونومیک برای راحتی طولانی مدت.',
+    description_fa: 'هدفون بلوتوثی Anker R60i NC یک گزینه کارآمد و خوش‌ساخت برای کاربری است که به کیفیت صدا، حذف نویز مؤثر و امکانات روز دنیای صوتی نیاز دارد. این مدل در دسته هدفون‌های توگوشی (Earbud) قرار می‌گیرد و با بهره‌گیری از درایوهای ۱۱ میلی‌متری، صدایی شفاف، قدرتمند و متعادل در بازه فرکانسی ۲۰ تا ۲۰۰۰۰ هرتز ارائه می‌دهد. یکی از ویژگی‌های برجسته این هدفون، پشتیبانی از نویز کنسلینگ فعال (ANC) است که با فناوری Adaptive ANC تا سه برابر توانیایی بهتری در حذف نویز محیطی نسبت به مدل‌های معمول ...',
     description_en: 'Anker Soundcore R60i NC Bluetooth Earbuds with excellent sound quality and active noise cancellation. 35-hour battery and ergonomic design.',
     features: [
       { icon: Shield, title_fa: 'ضمانت اصالت', title_en: 'Authenticity' },
@@ -24,10 +23,28 @@ const products = [
       { icon: HeadphonesIcon, title_fa: 'پشتیبانی ۲۴/۷', title_en: '24/7 Support' }
     ],
     specs: [
-      { label_fa: 'نوع اتصال', value_fa: 'بلوتوث ۵.۳' },
-      { label_fa: 'عمر باتری', value_fa: '۳۵ ساعت' },
-      { label_fa: 'نویز کنسلیگ', value_fa: 'ANC فعال' },
-      { label_fa: 'وزن', value_fa: '۴.۵ گرم' },
+      { label_fa: 'نوع هدفون، هدست و هندزفری', value_fa: 'تو گوشی (Earbud/Earphone)' },
+      { label_fa: 'اقلام همراه هدفون، هندزفری و هدست', value_fa: 'کابل شارژ، محفظه شارژ، پد گوشی یدکی' },
+      { label_fa: 'منبع انرژی', value_fa: 'باتری قابل شارژ' },
+      { label_fa: 'پاسخ فرکانسی', value_fa: '۲۰-۲۰۰۰۰ هرتز' },
+      { label_fa: 'قابلیت نویز کنسلینگ', value_fa: 'نویز کنسلینگ فعال (ANC)' },
+      { label_fa: 'قطر درایور', value_fa: '۱۱ میلی‌متر' },
+      { label_fa: 'ویژگی‌های خاص', value_fa: 'نشانگر LED، پشتیبانی از فرمان لمسی' },
+      { label_fa: 'محدوده عملکرد', value_fa: '۱۰ متر' },
+      { label_fa: 'نوع گوشی', value_fa: 'دو گوشی' },
+      { label_fa: 'عمر باتری محفظه شارژ', value_fa: '۵۰ ساعت' },
+      { label_fa: 'زمان مورد نیاز برای شارژ محفظه', value_fa: '۱.۵ ساعت' },
+      { label_fa: 'قابلیت‌های شارژ', value_fa: 'شارژ باسیم' },
+      { label_fa: 'درگاه شارژ', value_fa: 'USB Type-C' },
+      { label_fa: 'نسخه بلوتوث', value_fa: '۶.۱' },
+      { label_fa: 'سایر مشخصات', value_fa: 'پشتیبانی از LDAC / پشتیبانی از Hi-Res Audio / دارای Adaptive ANC / پشتیبانی از Spatial Audio / دارای گواهی IP۵۵' },
+      { label_fa: 'جنس بدنه', value_fa: 'پلاستیک' },
+      { label_fa: 'نوع کابل', value_fa: 'USB Type-C' },
+      { label_fa: 'نوع اتصال', value_fa: 'بی‌سیم' },
+      { label_fa: 'رابط‌ها', value_fa: 'بلوتوث' },
+      { label_fa: 'امپدانس', value_fa: '۱۴.۲ اهم' },
+      { label_fa: 'مناسب برای', value_fa: 'کاربری عمومی' },
+      { label_fa: 'قابلیت‌های مقاومتی', value_fa: 'مقاوم در برابر آب' },
     ]
   }
 ]
@@ -35,7 +52,7 @@ const products = [
 export default function ProductDetailPage() {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const { lang } = useStore()
+  const lang = 'fa'
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
 
   const product = products.find(p => 
@@ -214,7 +231,7 @@ export default function ProductDetailPage() {
       {/* توضیحات */}
       <div style={{ marginTop: 40, padding: '24px 0', borderTop: '1px solid var(--border)' }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>
-          {t('توضیحات محصول', 'Product Description')}
+          {t('معرفی', 'Introduction')}
         </h2>
         <p style={{ 
           color: 'var(--text-secondary)', 
@@ -229,23 +246,25 @@ export default function ProductDetailPage() {
       {/* مشخصات فنی */}
       <div style={{ marginTop: 24, padding: '24px 0', borderTop: '1px solid var(--border)' }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>
-          {t('مشخصات فنی', 'Specifications')}
+          {t('مشخصات', 'Specifications')}
         </h2>
         <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: 16 
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 0
         }}>
           {product.specs.map((spec, i) => (
             <div key={i} style={{ 
-              padding: 16, 
-              background: 'var(--bg-secondary)', 
-              borderRadius: 12 
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              padding: '12px 16px',
+              background: i % 2 === 0 ? 'var(--bg-secondary)' : 'transparent',
+              borderBottom: '1px solid var(--border)'
             }}>
-              <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 4 }}>
+              <div style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
                 {spec.label_fa}
               </div>
-              <div style={{ fontWeight: 600 }}>
+              <div style={{ fontSize: 14, fontWeight: 500, textAlign: 'right' }}>
                 {spec.value_fa}
               </div>
             </div>
