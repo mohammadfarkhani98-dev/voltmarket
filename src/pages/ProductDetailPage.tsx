@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useStore } from '../hooks/useStore'
 import { ArrowLeft, Star, Truck, Shield, HeadphonesIcon } from 'lucide-react'
 
-// نمونه محصولات (بعداً از API می‌گیریم)
+// نمونه محصولات
 const products = [
   {
     id: 1,
@@ -38,9 +38,7 @@ export default function ProductDetailPage() {
   const { lang } = useStore()
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
 
-  // پیدا کردن محصول (بعداً از API)
   const product = products.find(p => 
-    p.name_fa.replace(/\s+/g, '-').toLowerCase() === slug ||
     p.id.toString() === slug
   ) || products[0]
 
@@ -174,10 +172,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* دکمه خرید */}
-          <a 
-            href="https://www.digikala.com/product/dkp-21061064/%D9%87%D8%AF%D9%81%D9%88%D9%86-%D8%A8%D9%84%D9%88%D8%AA%D9%88%D8%AB%DB%8C-%D8%A7%D9%86%DA%A9%D8%B1-%D9%85%D8%AF%D9%84-r60i-nc/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             style={{
               display: 'block',
               width: '100%',
@@ -188,12 +183,13 @@ export default function ProductDetailPage() {
               textAlign: 'center',
               fontWeight: 700,
               fontSize: 16,
-              textDecoration: 'none',
+              border: 'none',
+              cursor: 'pointer',
               marginBottom: 16
             }}
           >
-            {t('خرید از دیجی‌کالا', 'Buy from Digikala')}
-          </a>
+            {t('افزودن به سبد خرید', 'Add to Cart')}
+          </button>
 
           {/* وضعیت موجودی */}
           <div style={{ 
