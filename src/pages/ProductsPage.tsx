@@ -16,7 +16,7 @@ const products = [
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const lang = 'fa' // موقت
+  const lang = 'fa'
   
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
   
@@ -112,22 +112,24 @@ export default function ProductsPage() {
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
+            {/* عکس محصول - هم‌سایز با کادر */}
             <div style={{ 
               width: '100%', 
-              height: 200, 
-              background: '#f5f5f5',
+              aspectRatio: '1 / 1', // مربع
+              background: '#fff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              position: 'relative'
+              position: 'relative',
+              overflow: 'hidden'
             }}>
               <img 
                 src={product.image} 
                 alt={t(product.name_fa, product.name_en)}
                 style={{ 
-                  width: '80%', 
-                  height: '80%', 
-                  objectFit: 'contain' 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover' // هم‌سایز با کادر
                 }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none'
@@ -150,6 +152,7 @@ export default function ProductsPage() {
               )}
             </div>
 
+            {/* اطلاعات محصول */}
             <div style={{ padding: 16 }}>
               <h3 style={{ 
                 fontSize: 14, 
