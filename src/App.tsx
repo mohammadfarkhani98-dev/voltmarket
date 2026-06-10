@@ -9,7 +9,6 @@ import ProductsPage from './pages/ProductsPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ArticlesPage from './pages/ArticlesPage'
 import AccountPage from './pages/AccountPage'
-import CategorySlider from './components/CategorySlider'
 import { useStore } from './hooks/useStore'
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
           <Route path="/account" element={<AccountPage />} />
         </Routes>
       </main>
-      <CategorySlider />
       <Footer />
       <MobileNav />
       <AuthModal />
