@@ -1,14 +1,51 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useStore } from '../hooks/useStore'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const categories = [
-  { id: 1, name_fa: 'هنذفری', name_en: 'Headphones', image: '/images/categories/headphones.jpg' },
-  { id: 2, name_fa: 'ساعت هوشمند', name_en: 'Smartwatches', image: '/images/categories/smartwatch.jpg' },
-  { id: 3, name_fa: 'پاوربانک', name_en: 'Power Banks', image: '/images/categories/powerbank.jpg' },
-  { id: 4, name_fa: 'فلش مموری', name_en: 'Flash Drives', image: '/images/categories/flashdrive.jpg' },
-  { id: 5, name_fa: 'کابل شارژ', name_en: 'Cables', image: '/images/categories/cable.jpg' },
-  { id: 6, name_fa: 'کیف و کاور', name_en: 'Cases', image: '/images/categories/case.jpg' },
+  { 
+    id: 1, 
+    name_fa: 'هنذفری', 
+    name_en: 'Headphones', 
+    image: '/images/categories/headphones.jpg',
+    slug: 'headphones'
+  },
+  { 
+    id: 2, 
+    name_fa: 'ساعت هوشمند', 
+    name_en: 'Smartwatches', 
+    image: '/images/categories/smartwatch.jpg',
+    slug: 'smartwatches'
+  },
+  { 
+    id: 3, 
+    name_fa: 'پاوربانک', 
+    name_en: 'Power Banks', 
+    image: '/images/categories/powerbank.jpg',
+    slug: 'powerbanks'
+  },
+  { 
+    id: 4, 
+    name_fa: 'فلش مموری', 
+    name_en: 'Flash Drives', 
+    image: '/images/categories/flashdrive.jpg',
+    slug: 'flash-drives'
+  },
+  { 
+    id: 5, 
+    name_fa: 'کابل شارژ', 
+    name_en: 'Cables', 
+    image: '/images/categories/cable.jpg',
+    slug: 'cables'
+  },
+  { 
+    id: 6, 
+    name_fa: 'کیف و کاور', 
+    name_en: 'Cases', 
+    image: '/images/categories/case.jpg',
+    slug: 'cases'
+  },
 ]
 
 export default function Categories() {
@@ -64,16 +101,18 @@ export default function Categories() {
           }}
         >
           {categories.map((cat) => (
-            <div 
+            <Link 
               key={cat.id}
+              to={`/products?category=${cat.slug}&sort=popular`}
               style={{ 
                 flex: '0 0 auto',
                 width: 140,
                 scrollSnapAlign: 'start',
-                cursor: 'pointer'
+                textDecoration: 'none',
+                color: 'inherit'
               }}
             >
-              {/* عکس - متوسط */}
+              {/* عکس */}
               <div style={{ 
                 width: 140, 
                 height: 140, 
@@ -108,7 +147,7 @@ export default function Categories() {
               }}>
                 {t(cat.name_fa, cat.name_en)}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
