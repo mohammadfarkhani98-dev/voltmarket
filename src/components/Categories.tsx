@@ -18,7 +18,7 @@ export default function Categories() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = 120
+      const scrollAmount = 160
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -27,25 +27,25 @@ export default function Categories() {
   }
 
   return (
-    <section style={{ padding: '24px 0', background: 'var(--bg-primary)' }}>
+    <section style={{ padding: '40px 0', background: 'var(--bg-primary)' }}>
       <div className="container">
         {/* هدر */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-          <h2 style={{ fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 800, color: 'var(--text-primary)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+          <h2 style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 800, color: 'var(--text-primary)' }}>
             {t('دسته‌بندی محصولات', 'Product Categories')}
           </h2>
-          <div style={{ display: 'flex', gap: 6 }}>
+          <div style={{ display: 'flex', gap: 8 }}>
             <button 
               onClick={() => scroll('left')}
-              style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronLeft size={14} />
+              <ChevronLeft size={16} />
             </button>
             <button 
               onClick={() => scroll('right')}
-              style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronRight size={14} />
+              <ChevronRight size={16} />
             </button>
           </div>
         </div>
@@ -55,12 +55,12 @@ export default function Categories() {
           ref={sliderRef}
           style={{ 
             display: 'flex', 
-            gap: 12, 
+            gap: 16, 
             overflowX: 'auto',
             scrollSnapType: 'x mandatory',
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            paddingBottom: 4
+            paddingBottom: 8
           }}
         >
           {categories.map((cat) => (
@@ -68,19 +68,19 @@ export default function Categories() {
               key={cat.id}
               style={{ 
                 flex: '0 0 auto',
-                width: 90,
+                width: 140,
                 scrollSnapAlign: 'start',
                 cursor: 'pointer'
               }}
             >
-              {/* عکس - کوچیک */}
+              {/* عکس - متوسط */}
               <div style={{ 
-                width: 90, 
-                height: 90, 
-                borderRadius: 12, 
+                width: 140, 
+                height: 140, 
+                borderRadius: 16, 
                 overflow: 'hidden',
-                background: '#f0f0f0',
-                marginBottom: 6,
+                background: '#f5f5f5',
+                marginBottom: 10,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -89,8 +89,8 @@ export default function Categories() {
                   src={cat.image} 
                   alt={t(cat.name_fa, cat.name_en)}
                   style={{ 
-                    width: '80%', 
-                    height: '80%', 
+                    width: '85%', 
+                    height: '85%', 
                     objectFit: 'contain'
                   }}
                   onError={(e) => {
@@ -102,9 +102,9 @@ export default function Categories() {
               <div style={{ 
                 textAlign: 'center', 
                 fontWeight: 600, 
-                fontSize: 11, 
+                fontSize: 13, 
                 color: 'var(--text-primary)',
-                lineHeight: 1.3
+                lineHeight: 1.4
               }}>
                 {t(cat.name_fa, cat.name_en)}
               </div>
