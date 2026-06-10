@@ -11,14 +11,14 @@ const categories = [
   { id: 6, name_fa: 'کیف و کاور', name_en: 'Cases', image: '/images/categories/case.jpg' },
 ]
 
-export default function CategorySlider() {
+export default function Categories() {
   const { lang } = useStore()
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
   const sliderRef = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = 280
+      const scrollAmount = 120
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -27,25 +27,25 @@ export default function CategorySlider() {
   }
 
   return (
-    <section style={{ padding: '60px 0', background: 'var(--bg-primary)' }}>
+    <section style={{ padding: '24px 0', background: 'var(--bg-primary)' }}>
       <div className="container">
         {/* هدر */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 800, color: 'var(--text-primary)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <h2 style={{ fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 800, color: 'var(--text-primary)' }}>
             {t('دسته‌بندی محصولات', 'Product Categories')}
           </h2>
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 6 }}>
             <button 
               onClick={() => scroll('left')}
-              style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={14} />
             </button>
             <button 
               onClick={() => scroll('right')}
-              style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={14} />
             </button>
           </div>
         </div>
@@ -55,12 +55,12 @@ export default function CategorySlider() {
           ref={sliderRef}
           style={{ 
             display: 'flex', 
-            gap: 20, 
+            gap: 12, 
             overflowX: 'auto',
             scrollSnapType: 'x mandatory',
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            paddingBottom: 8
+            paddingBottom: 4
           }}
         >
           {categories.map((cat) => (
@@ -68,31 +68,44 @@ export default function CategorySlider() {
               key={cat.id}
               style={{ 
                 flex: '0 0 auto',
-                width: 240,
+                width: 90,
                 scrollSnapAlign: 'start',
                 cursor: 'pointer'
               }}
             >
-              {/* عکس */}
+              {/* عکس - کوچیک */}
               <div style={{ 
-                width: '100%', 
-                height: 240, 
-                borderRadius: 'var(--radius-lg)', 
+                width: 90, 
+                height: 90, 
+                borderRadius: 12, 
                 overflow: 'hidden',
-                background: 'var(--bg-secondary)',
-                marginBottom: 12
+                background: '#f0f0f0',
+                marginBottom: 6,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}>
                 <img 
                   src={cat.image} 
                   alt={t(cat.name_fa, cat.name_en)}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ 
+                    width: '80%', 
+                    height: '80%', 
+                    objectFit: 'contain'
+                  }}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="240" height="240"%3E%3Crect width="240" height="240" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3E' + t(cat.name_fa, cat.name_en) + '%3C/text%3E%3C/svg%3E'
+                    (e.target as HTMLImageElement).style.display = 'none'
                   }}
                 />
               </div>
               {/* نام */}
-              <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 15, color: 'var(--text-primary)' }}>
+              <div style={{ 
+                textAlign: 'center', 
+                fontWeight: 600, 
+                fontSize: 11, 
+                color: 'var(--text-primary)',
+                lineHeight: 1.3
+              }}>
                 {t(cat.name_fa, cat.name_en)}
               </div>
             </div>
