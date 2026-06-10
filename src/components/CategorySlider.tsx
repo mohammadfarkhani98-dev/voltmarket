@@ -18,7 +18,7 @@ export default function CategorySlider() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = 280
+      const scrollAmount = 200
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -27,25 +27,25 @@ export default function CategorySlider() {
   }
 
   return (
-    <section style={{ padding: '60px 0', background: 'var(--bg-primary)' }}>
+    <section style={{ padding: '40px 0', background: 'var(--bg-primary)' }}>
       <div className="container">
         {/* هدر */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 800, color: 'var(--text-primary)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+          <h2 style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 800, color: 'var(--text-primary)' }}>
             {t('دسته‌بندی محصولات', 'Product Categories')}
           </h2>
           <div style={{ display: 'flex', gap: 8 }}>
             <button 
               onClick={() => scroll('left')}
-              style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 36, height: 36, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </button>
             <button 
               onClick={() => scroll('right')}
-              style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              style={{ width: 36, height: 36, borderRadius: '50%', border: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </button>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function CategorySlider() {
           ref={sliderRef}
           style={{ 
             display: 'flex', 
-            gap: 20, 
+            gap: 16, 
             overflowX: 'auto',
             scrollSnapType: 'x mandatory',
             scrollbarWidth: 'none',
@@ -68,31 +68,45 @@ export default function CategorySlider() {
               key={cat.id}
               style={{ 
                 flex: '0 0 auto',
-                width: 240,
+                width: 140,
                 scrollSnapAlign: 'start',
                 cursor: 'pointer'
               }}
             >
-              {/* عکس */}
+              {/* عکس - سایز ثابت */}
               <div style={{ 
-                width: '100%', 
-                height: 240, 
-                borderRadius: 'var(--radius-lg)', 
+                width: 140, 
+                height: 140, 
+                borderRadius: 16, 
                 overflow: 'hidden',
-                background: 'var(--bg-secondary)',
-                marginBottom: 12
+                background: '#f5f5f5',
+                marginBottom: 8,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}>
                 <img 
                   src={cat.image} 
                   alt={t(cat.name_fa, cat.name_en)}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'contain',
+                    padding: 8
+                  }}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="240" height="240"%3E%3Crect width="240" height="240" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3E' + t(cat.name_fa, cat.name_en) + '%3C/text%3E%3C/svg%3E'
+                    (e.target as HTMLImageElement).style.display = 'none'
                   }}
                 />
               </div>
               {/* نام */}
-              <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 15, color: 'var(--text-primary)' }}>
+              <div style={{ 
+                textAlign: 'center', 
+                fontWeight: 600, 
+                fontSize: 13, 
+                color: 'var(--text-primary)',
+                lineHeight: 1.4
+              }}>
                 {t(cat.name_fa, cat.name_en)}
               </div>
             </div>
