@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useStore } from '../hooks/useStore'
 
 // نمونه محصولات
 const products = [
@@ -18,7 +16,8 @@ const products = [
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const { lang } = useStore()
+  const lang = 'fa' // موقت
+  
   const t = (fa: string, en: string) => (lang === 'fa' ? fa : en)
   
   const category = searchParams.get('category') || 'all'
@@ -42,7 +41,6 @@ export default function ProductsPage() {
     setSearchParams(newParams)
   }
 
-  // فیلتر محصولات بر اساس دسته‌بندی
   const filteredProducts = category === 'all' 
     ? products 
     : products.filter(p => p.category === category)
@@ -53,7 +51,6 @@ export default function ProductsPage() {
 
   return (
     <div className="container" style={{ padding: '40px 0' }}>
-      {/* هدر */}
       <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, marginBottom: 8 }}>
         {t('همه محصولات', 'All Products')}
       </h1>
@@ -61,7 +58,6 @@ export default function ProductsPage() {
         {t('گجت‌های دیجیتال باکیفیت و اورجینال', 'Quality & Original Digital Gadgets')}
       </p>
 
-      {/* فیلترها */}
       <div style={{ 
         display: 'flex', 
         gap: 8, 
@@ -97,7 +93,6 @@ export default function ProductsPage() {
         ))}
       </div>
 
-      {/* محصولات */}
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', 
@@ -117,7 +112,6 @@ export default function ProductsPage() {
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            {/* عکس محصول */}
             <div style={{ 
               width: '100%', 
               height: 200, 
@@ -156,7 +150,6 @@ export default function ProductsPage() {
               )}
             </div>
 
-            {/* اطلاعات محصول */}
             <div style={{ padding: 16 }}>
               <h3 style={{ 
                 fontSize: 14, 
