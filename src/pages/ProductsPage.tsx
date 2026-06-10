@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 
 // نمونه محصولات
 const products = [
@@ -10,7 +10,8 @@ const products = [
     image: '/images/products/soundcore-r60i.jpg',
     category: 'headphones',
     rating: 4.8,
-    isNew: true
+    isNew: true,
+    link: 'https://www.digikala.com/product/dkp-21061064/%D9%87%D8%AF%D9%81%D9%88%D9%86-%D8%A8%D9%84%D9%88%D8%AA%D9%88%D8%AB%DB%8C-%D8%A7%D9%86%DA%A9%D8%B1-%D9%85%D8%AF%D9%84-r60i-nc/'
   }
 ]
 
@@ -99,23 +100,29 @@ export default function ProductsPage() {
         gap: 20 
       }}>
         {filteredProducts.map((product) => (
-          <div 
+          <a 
             key={product.id}
+            href={product.link}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               background: 'var(--bg-secondary)',
               borderRadius: 16,
               overflow: 'hidden',
               cursor: 'pointer',
               transition: 'transform 0.2s',
-              border: '1px solid var(--border)'
+              border: '1px solid var(--border)',
+              textDecoration: 'none',
+              color: 'inherit',
+              display: 'block'
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            {/* عکس محصول - هم‌سایز با کادر */}
+            {/* عکس محصول */}
             <div style={{ 
               width: '100%', 
-              aspectRatio: '1 / 1', // مربع
+              aspectRatio: '1 / 1',
               background: '#fff',
               display: 'flex',
               alignItems: 'center',
@@ -129,7 +136,7 @@ export default function ProductsPage() {
                 style={{ 
                   width: '100%', 
                   height: '100%', 
-                  objectFit: 'cover' // هم‌سایز با کادر
+                  objectFit: 'cover'
                 }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none'
@@ -185,7 +192,7 @@ export default function ProductsPage() {
                 </span>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
